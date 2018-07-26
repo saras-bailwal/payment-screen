@@ -1,0 +1,80 @@
+<div class="row h-100 p-3 justify-content-center">
+    <div class="col-sm-8 col-12" *ngIf="!showSuccessResult || !showSuccessResult">
+        <h5 class="primary" id="title">Payment Details</h5>
+        <form [formGroup]="fG" (ngSubmit)="onSubmit();">
+            <fieldset class="form-group">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Cardholder Name
+                            </label>
+                            <input class="form-control" placeholder="Card Name" type="text" formControlName="name" id="nameId" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input class="form-control" placeholder="XXXX XXXX XXXX XXXX" type="text" formControlName="cardNo" id="cardNoId" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>Expiry
+                            </label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Month" type="number" formControlName="expiryMonth" id="expiryMonthId" format="number"
+                                    maxLength="2" />
+                                <input class="form-control" placeholder="Year" type="number" formControlName="expiryYear" id="expiryYearId" maxLength="4"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="CVV" type="number" formControlName="cvv" id="cvvId" format="number" maxLength="3"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-lg btn-block" [disabled]='!fG.valid' [class.btn-primary]="fG.valid" [class.btn-secondary]="!fG.valid">Process Payment</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="showSuccessResult">
+        <div class="card text-center cardSize">
+            <div class="card-header" id="successCard">
+                Transaction
+            </div>
+            <div class="card-body">
+                <div class="wrapper">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 98.5 98.5" enable-background="new 0 0 98.5 98.5" xml:space="preserve">
+                        <path class="checkmark" fill="none" stroke-width="8" stroke-miterlimit="10" d="M81.7,17.8C73.5,9.3,62,4,49.2,4
+                        C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3"
+                        />
+                    </svg>
+                </div>
+                <p class="card-text">Payment Successful !!!</p>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showFailureResult">
+        <div class="card text-center">
+            <div class="card-header">
+                Transction
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Payment Failed</h5>
+
+                <p class="card-text">Payment failed Please try after sometime.</p>
+            </div>
+        </div>
+    </div>
+</div>
